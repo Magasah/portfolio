@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+
+  <!-- SEO -->
+  <title>Muhammad — Software Engineer & Cybersecurity</title>
+  <meta name="description" content="Personal portfolio of Muhammad from Dushanbe, Tajikistan, focused on software engineering, cybersecurity, Linux and automation.">
+  <meta name="author" content="Muhammad">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://magasah.dev">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://magasah.dev">
+  <meta property="og:site_name" content="Muhammad">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Muhammad — Software Engineer & Cybersecurity">
+  <meta property="og:description" content="Personal portfolio of Muhammad from Dushanbe, Tajikistan, focused on software engineering, cybersecurity, Linux and automation.">
+  <meta property="og:image" content="https://magasah.dev/og.png">
+  <meta property="og:image:alt" content="Muhammad — Software Engineer & Cybersecurity">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Muhammad — Software Engineer & Cybersecurity">
+  <meta name="twitter:description" content="Personal portfolio of Muhammad from Dushanbe, Tajikistan, focused on software engineering, cybersecurity, Linux and automation.">
+  <meta name="twitter:image" content="https://magasah.dev/og.png">
+
+  <!-- Theme/lang bootstrap — MUST run before body renders to prevent flash -->
+  <script>
+    (function() {
+      try {
+        var savedTheme = localStorage.getItem('theme');
+        var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (systemDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+
+        var savedLang = localStorage.getItem('lang') || 'ru';
+        document.documentElement.setAttribute('lang', savedLang);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Fonts: system stack first; Manrope/Mono enhance when they arrive -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" media="print" onload="this.onload=null;this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+    <style>[data-reveal] { opacity: 1 !important; transform: none !important; }</style>
+  </noscript>
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       RESET & TOKENS
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #ffffff;
+      --bg-alt:      #f7f7f8;
+      --bg-elev:     #ffffff;
+      --text:        #0e0e10;
+      --text-muted:  #666770;
+      --text-light:  #9a9ba3;
+      --accent:      #2ECC71;
+      --accent-dark: #25a25a;
+      --accent-soft: rgba(46, 204, 113, 0.10);
+      --accent-ring: rgba(46, 204, 113, 0.25);
+      --border:      #e8e8ec;
+      --border-strong: #d4d4dc;
+      --shadow-sm:   0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md:   0 8px 24px rgba(0,0,0,0.06);
+      --scrim:       rgba(255,255,255,0.85);
+      --pad:         max(clamp(16px, 4vw, 32px), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+
+      --font-sans:   Manrope, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-mono:   'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      --nav-h:       64px;
+      --max-w:       1200px;
+      --r:           10px;
+      --tr:          180ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg:          #0e0e10;
+      --bg-alt:      #141418;
+      --bg-elev:     #17171b;
+      --text:        #f3f3f5;
+      --text-muted:  #a0a1ac;
+      --text-light:  #6a6b74;
+      --accent:      #34d879;
+      --accent-dark: #2ECC71;
+      --accent-soft: rgba(52, 216, 121, 0.10);
+      --accent-ring: rgba(52, 216, 121, 0.28);
+      --border:      #24252b;
+      --border-strong: #33343c;
+      --shadow-sm:   0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md:   0 8px 24px rgba(0,0,0,0.35);
+      --scrim:       rgba(14,14,16,0.85);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(46, 204, 113, 0.55) transparent;
+    }
+
+    html::-webkit-scrollbar { width: 8px; height: 8px; }
+    html::-webkit-scrollbar-track { background: transparent; }
+    html::-webkit-scrollbar-thumb {
+      background: rgba(46, 204, 113, 0.55);
+      border-radius: 100px;
+    }
+    html::-webkit-scrollbar-thumb:hover { background: #2ECC71; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: clip;
+      transition: background var(--tr), color var(--tr);
+      -webkit-tap-highlight-color: transparent;
+    }
+    body.menu-open { overflow: hidden; }
+
+    ::selection {
+      background: var(--accent-ring);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; touch-action: manipulation; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; touch-action: manipulation; }
+    ul { list-style: none; }
+
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--text); color: var(--bg);
+      padding: 10px 16px; z-index: 200; border-radius: 6px;
+    }
+    .skip-link:focus { left: 12px; top: 12px; }
+    #main:focus { outline: none; }
+
+    /* Brand marks — source files are black-on-transparent */
+    .brand-icon {
+      width: 18px; height: 18px; max-width: 18px;
+      object-fit: contain; flex-shrink: 0;
+    }
+    .brand-icon--md { width: 32px; height: 32px; max-width: 32px; }
+    .brand-icon--sm { width: 16px; height: 16px; max-width: 16px; }
+    [data-theme="dark"] .brand-icon { filter: invert(1); }
+
+    /* ═══════════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════════ */
+    .container {
+      width: min(calc(100% - 2 * var(--pad)), var(--max-w));
+      max-width: 100%;
+      margin-inline: auto;
+      padding-inline: 0;
+      min-width: 0;
+    }
+    .section { padding: clamp(64px, 10vw, 96px) 0; }
+
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent-dark);
+      margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .section-label::before {
+      content: ''; width: 18px; height: 1px; background: var(--accent); flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 1.1rem + 2vw, 2.5rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 18px;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+
+    .section-sub {
+      font-size: clamp(15px, 1.5vw, 17px);
+      color: var(--text-muted);
+      max-width: 36em; line-height: 1.7;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, 12px, 0);
+      transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-reveal].is-in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       SCROLL PROGRESS
+    ═══════════════════════════════════════════════ */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 2px; z-index: 101;
+      background: transparent;
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%; width: 100%;
+      background: #2ECC71;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+    }
+
+    /* ═══════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h); z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid transparent;
+      overflow: visible;
+      transition: border-color var(--tr), background var(--tr);
+    }
+    .nav.scrolled { border-bottom-color: var(--border); }
+
+    @media (hover: hover) and (pointer: fine) {
+      @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+        .nav {
+          background: var(--scrim);
+          backdrop-filter: saturate(180%) blur(14px);
+          -webkit-backdrop-filter: saturate(180%) blur(14px);
+        }
+      }
+    }
+
+    .nav-inner {
+      width: min(calc(100% - 2 * var(--pad)), var(--max-w));
+      max-width: 100%;
+      margin-inline: auto;
+      padding-inline: 0;
+      height: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; min-width: 0;
+    }
+
+    .nav-logo {
+      display: inline-flex; align-items: baseline; gap: 6px;
+      font-size: 16px; font-weight: 700;
+      letter-spacing: -0.02em;
+      min-width: 0; flex-shrink: 1;
+    }
+    .nav-logo-mark { color: var(--accent); }
+    .nav-logo-alias {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 2px;
+      margin: 0 auto;
+    }
+
+    .nav-link {
+      font-size: 14px; font-weight: 500;
+      color: var(--text-muted);
+      padding: 8px 14px; border-radius: 6px;
+      transition: color var(--tr), background var(--tr);
+      position: relative;
+    }
+    .nav-link:hover { color: var(--text); background: var(--bg-alt); }
+    .nav-link.active { color: var(--text); }
+    .nav-link.active::after {
+      content: ''; position: absolute;
+      bottom: 2px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+      position: relative;
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .lang-btn {
+      font-family: var(--font-mono);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 7px;
+      transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 1;
+      min-width: 38px;
+      text-align: center;
+    }
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active { color: var(--text); }
+    .lang-indicator {
+      position: absolute;
+      top: 3px; bottom: 3px; left: 3px;
+      width: calc(50% - 3px);
+      background: var(--bg-elev);
+      border: 1px solid var(--border-strong);
+      border-radius: 7px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+    .lang-switch[data-active="en"] .lang-indicator {
+      transform: translateX(100%);
+    }
+
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      position: relative;
+      width: 48px; height: 28px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px;
+      flex-shrink: 0;
+      transition: background var(--tr), border-color var(--tr);
+      cursor: pointer;
+    }
+    .theme-toggle:hover { border-color: var(--border-strong); }
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 20px; height: 20px;
+      background: var(--bg-elev);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm), 0 0 0 1px var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text);
+      transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1),
+                  background var(--tr), color var(--tr);
+    }
+    [data-theme="dark"] .theme-toggle-thumb {
+      transform: translateX(20px);
+      background: var(--accent);
+      color: #0e0e10;
+    }
+    .theme-toggle svg { width: 12px; height: 12px; }
+    .icon-moon { display: none; }
+    [data-theme="dark"] .icon-sun { display: none; }
+    [data-theme="dark"] .icon-moon { display: block; }
+
+    .nav-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      font-size: 13px; font-weight: 700;
+      color: #ffffff;
+      background: #141414;
+      border: 1px solid #141414;
+      padding: 6px 14px;
+      border-radius: 10px;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease;
+      flex-shrink: 0;
+    }
+    .nav-cta .brand-icon { width: 16px; height: 16px; max-width: 16px; filter: invert(1); transition: transform 200ms ease; }
+    .nav-cta:hover {
+      background: #242424;
+      border-color: #242424;
+    }
+    .nav-cta:hover .brand-icon { transform: translateY(-1px); }
+    .nav-cta:active { transform: translateY(1px); }
+    [data-theme="dark"] .nav-cta {
+      background: #f3f3f5;
+      color: #0e0e10;
+      border-color: #f3f3f5;
+    }
+    [data-theme="dark"] .nav-cta .brand-icon { filter: none; }
+    [data-theme="dark"] .nav-cta:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      padding: 8px; border-radius: 6px;
+      background: none; border: none;
+      transition: background var(--tr);
+    }
+    .nav-burger:hover { background: var(--bg-alt); }
+    .nav-burger span {
+      display: block; width: 20px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.28s ease, opacity 0.2s ease;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 98;
+      background: var(--bg);
+      padding: 8px var(--pad) max(28px, env(safe-area-inset-bottom, 0px));
+      flex-direction: column;
+      gap: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-mobile.open {
+      display: flex !important;
+    }
+    .nav-mobile .nav-link {
+      display: block;
+      width: 100%;
+      padding: 16px 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      background: none;
+    }
+    .nav-mobile .nav-link:hover,
+    .nav-mobile .nav-link.active {
+      color: var(--text);
+      background: none;
+    }
+    .nav-mobile .nav-link.active::after { display: none; }
+    .nav-mobile-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 4px;
+    }
+    .nav-mobile .nav-cta { display: inline-flex; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-right > .nav-cta { display: none; }
+      .nav .lang-switch, .nav .theme-toggle { display: none; }
+      .nav-burger { display: flex; }
+    }
+    @media (max-width: 480px) {
+      :root { --nav-h: 56px; }
+    }
+    @media (max-width: 380px) {
+      .nav-logo-alias { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 100dvh;
+      padding-top: var(--nav-h);
+      overflow: clip;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: min(70vw, 640px);
+      height: min(70vw, 640px);
+      right: -18%;
+      top: 8%;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46, 204, 113, 0.10), transparent 68%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: min(42vw, 440px);
+      height: min(42vw, 440px);
+      right: -8%;
+      top: 18%;
+      border: 1px solid var(--accent);
+      opacity: 0.12;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    [data-theme="dark"] .hero::before {
+      background: radial-gradient(circle, rgba(46, 204, 113, 0.14), transparent 68%);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      @media (prefers-reduced-motion: no-preference) {
+        .hero::before {
+          animation: glow-drift 14s ease-in-out infinite;
+        }
+      }
+    }
+    @keyframes glow-drift {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(-16px, 10px, 0); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100dvh - var(--nav-h));
+      padding-block: clamp(40px, 7vw, 72px);
+      padding-bottom: 64px;
+      width: min(calc(100% - 2 * var(--pad)), var(--max-w));
+      max-width: 100%;
+      min-width: 0;
+      margin-inline: auto;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 4px 0;
+      margin-bottom: 24px;
+      border: none;
+      background: transparent;
+    }
+    .hero-status-dot {
+      width: 6px; height: 6px;
+      background: #2ECC71; border-radius: 50%; flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-size: clamp(2.25rem, 1.4rem + 6.5vw, 5.75rem);
+      font-weight: 800; line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 6px;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+    .hero-alias {
+      font-family: var(--font-mono);
+      font-size: 14px; font-weight: 500;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    .hero-alias::before { content: '@'; color: var(--accent); }
+
+    .hero-role {
+      font-size: clamp(1.15rem, 1rem + 1.4vw, 2rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      overflow-wrap: break-word;
+    }
+    .hero-tagline {
+      font-size: clamp(1.15rem, 1rem + 1.4vw, 2rem);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      overflow-wrap: break-word;
+      max-width: 18em;
+    }
+    .hero-tagline em { font-style: normal; color: var(--accent-dark); }
+
+    .hero-desc {
+      font-size: clamp(15px, 1.5vw, 17px);
+      color: var(--text-muted);
+      max-width: 34em; line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .btn-primary,
+    .btn-outline,
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      font-size: 14px; font-weight: 700;
+      padding: 10px 18px; border-radius: var(--r);
+      min-width: 0;
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    }
+    .btn-primary {
+      color: #ffffff;
+      background: #141414;
+      border: 1px solid #141414;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 160px; height: 160px;
+      margin-top: -80px; margin-left: -80px;
+      background: radial-gradient(circle, rgba(46, 204, 113, 0.35), transparent 70%);
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 250ms ease, transform 250ms ease;
+      pointer-events: none;
+    }
+    .btn-primary:hover {
+      background: #222222;
+      border-color: #222222;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+    }
+    .btn-primary:hover::after {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+    .btn-primary:active { transform: translateY(1px); }
+    .btn-arrow {
+      transition: transform 200ms ease;
+    }
+    .btn-primary:hover .btn-arrow {
+      transform: translateX(3px);
+    }
+
+    [data-theme="dark"] .btn-primary {
+      color: #0e0e10;
+      background: #f3f3f5;
+      border-color: #f3f3f5;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    [data-theme="dark"] .btn-primary:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 4px 16px rgba(255,255,255,0.15);
+    }
+    [data-theme="dark"] .btn-primary::after {
+      background: radial-gradient(circle, rgba(46, 204, 113, 0.4), transparent 70%);
+    }
+
+    .btn-outline {
+      color: var(--text); background: transparent;
+      border: 1px solid var(--border-strong);
+    }
+    .btn-outline:hover { border-color: var(--text); background: var(--bg-alt); }
+    .btn-outline:active { transform: translateY(1px); }
+    .btn-ghost {
+      font-weight: 600;
+      color: var(--text);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--border-strong); background: var(--bg-elev); }
+    .btn-ghost:active { transform: translateY(1px); }
+
+    .icon-ext {
+      width: 12px; height: 12px; flex-shrink: 0;
+      transition: transform var(--tr);
+    }
+    a:hover .icon-ext { transform: translate(2px, -2px); }
+
+    .hero-location {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--text-light);
+      margin-top: 32px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      color: var(--text-light);
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════════ */
+    .about { background: var(--bg-alt); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      gap: clamp(32px, 6vw, 80px);
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 16px; color: var(--text-muted);
+      line-height: 1.8; margin-bottom: 18px;
+    }
+    .about-text p:last-of-type { margin-bottom: 0; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    .about-facts {
+      display: flex; flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .about-facts li {
+      font-size: 13px; font-weight: 500; color: var(--text);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .about-facts li::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%; flex-shrink: 0;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROJECTS
+    ═══════════════════════════════════════════════ */
+    .projects-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px; margin-bottom: 8px;
+    }
+    .project-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .filter-btn {
+      font-size: 13px; font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 7px 14px; border-radius: 10px;
+      transition: color var(--tr), border-color var(--tr), background var(--tr);
+    }
+    .filter-btn:hover { color: var(--text); border-color: var(--border-strong); }
+    .filter-btn.active {
+      color: #0e0e10; background: var(--accent); border-color: var(--accent);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(20px, 3.5vw, 32px);
+      margin-top: 32px;
+    }
+    .project-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(145deg, rgba(46, 204, 113, 0.3), transparent 50%, var(--border));
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                  background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    [data-theme="dark"] .project-card {
+      background: linear-gradient(145deg, rgba(52, 216, 121, 0.3), transparent 50%, var(--border));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .project-card:hover {
+        transform: translateY(-4px);
+        background: linear-gradient(145deg, rgba(46, 204, 113, 0.55), rgba(46, 204, 113, 0.15) 50%, var(--border-strong));
+        box-shadow: 0 16px 36px rgba(0,0,0,0.06), 0 0 20px rgba(46, 204, 113, 0.08);
+      }
+      [data-theme="dark"] .project-card:hover {
+        background: linear-gradient(145deg, rgba(52, 216, 121, 0.65), rgba(52, 216, 121, 0.2) 50%, var(--border-strong));
+        box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 24px rgba(46, 204, 113, 0.12);
+      }
+      .project-card[data-tilt]:hover { transform: none; }
+    }
+
+    .project-card-inner {
+      height: 100%;
+      width: 100%;
+      border-radius: 19px;
+      background: var(--bg-elev);
+      padding: clamp(24px, 3.5vw, 32px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
+    }
+    .project-card.featured .project-card-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .project-card.featured { transform-style: preserve-3d; }
+    }
+
+    .tajsel-frame {
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 28px;
+      background: #121412;
+      border: 1px solid #1f2420;
+      border-radius: 16px;
+      min-width: 0;
+      max-width: 100%;
+      transition: transform 250ms ease;
+    }
+    [data-theme="dark"] .tajsel-frame {
+      background: #101612;
+      border-color: var(--accent-ring);
+    }
+    .project-card:hover .tajsel-frame {
+      transform: scale(1.01);
+    }
+    .tajsel-logo {
+      display: block;
+      width: min(260px, 100%);
+      height: auto;
+      max-width: 100%;
+      aspect-ratio: 1846 / 520;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .project-kicker {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .project-index {
+      font-family: var(--font-mono);
+      font-size: 12px; color: var(--text-light); font-weight: 600;
+    }
+    .project-category {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-dark);
+    }
+    .project-private {
+      font-size: 11px; font-weight: 500;
+      color: var(--text-light);
+      margin-left: auto;
+    }
+
+    .project-subtitle {
+      font-family: var(--font-mono);
+      font-size: 12px; color: var(--text-light);
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .project-name {
+      font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 6px;
+      overflow-wrap: break-word;
+    }
+    .project-card.featured .project-name {
+      font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+    }
+    .project-desc {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 20px; flex: 1;
+      max-width: 42em;
+    }
+    .project-stack {
+      display: flex; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 20px;
+    }
+    .tech-tag {
+      font-size: 12px; font-weight: 500;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .project-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .project-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700;
+      padding: 8px 14px; border-radius: var(--r);
+      border: 1px solid var(--border);
+      color: var(--text); background: var(--bg);
+      transition: border-color var(--tr), background var(--tr), transform var(--tr);
+      max-width: 100%;
+    }
+    .project-btn:hover { border-color: var(--text); background: var(--bg-alt); }
+    .project-btn:hover .icon-ext { transform: translate(2px, -2px); }
+    .project-btn:active { transform: translateY(1px); }
+    .project-btn.live {
+      background: var(--accent); color: #0e0e10; border-color: var(--accent);
+    }
+    .project-btn.live:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+    .project-btn span { overflow-wrap: anywhere; }
+
+    @media (max-width: 800px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: auto; }
+      .project-card.featured .project-card-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       SKILLS
+    ═══════════════════════════════════════════════ */
+    .skills { background: var(--bg-alt); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px; margin-top: 40px;
+    }
+    .skill-group {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      min-width: 0;
+      transition: border-color var(--tr), transform var(--tr);
+    }
+    .skill-group:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+    .skill-group-title {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .skill-list { display: flex; flex-direction: column; gap: 10px; }
+    .skill-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500;
+      color: var(--text);
+      min-width: 0;
+    }
+    .skill-dot {
+      width: 6px; height: 6px; background: var(--accent);
+      border-radius: 50%; flex-shrink: 0;
+    }
+    @media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 500px) { .skills-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════════
+       FOCUS
+    ═══════════════════════════════════════════════ */
+    .focus { background: #0e0e10; color: #f3f3f5; }
+    [data-theme="dark"] .focus { background: #050506; }
+    .focus .section-label { color: var(--accent); }
+    .focus .section-label::before { background: var(--accent); }
+    .focus .section-title { color: #f3f3f5; }
+    .focus .section-sub { color: rgba(255,255,255,0.65); }
+
+    .focus-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px; margin-top: 48px;
+    }
+    .focus-card {
+      padding: 28px; background: #131317;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      min-width: 0;
+      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+    }
+    [data-theme="dark"] .focus-card { background: #0c0c0f; border-color: rgba(255,255,255,0.06); }
+    .focus-card:hover {
+      background: #17171d;
+      border-color: rgba(46, 204, 113, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .focus-index {
+      font-family: var(--font-mono);
+      font-size: 11px; color: var(--accent); font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .focus-name {
+      font-size: 16px; font-weight: 700;
+      color: #f3f3f5; margin-bottom: 8px;
+      overflow-wrap: break-word;
+    }
+    .focus-desc {
+      font-size: 13px; color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+    .focus-badge {
+      display: inline-block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 14px;
+    }
+    @media (max-width: 900px) { .focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .focus-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════════
+       GITHUB
+    ═══════════════════════════════════════════════ */
+    .github-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px; margin-bottom: 36px;
+    }
+    .github-profile-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 0; min-height: 44px;
+      max-width: 100%;
+      min-width: 0;
+      transition: border-color var(--tr);
+    }
+    .github-profile-link:hover { border-color: var(--text); }
+    .github-profile-link span { overflow-wrap: anywhere; }
+
+    .github-repos {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .repo-card {
+      padding: 22px;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-width: 0;
+      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    }
+    .repo-card:hover {
+      background: var(--bg-elev);
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .repo-card a {
+      display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0;
+    }
+    .repo-name {
+      font-size: 15px; font-weight: 700;
+      color: var(--text);
+      display: flex; align-items: flex-start; gap: 8px;
+      overflow-wrap: anywhere;
+      transition: color 200ms ease;
+    }
+    .repo-card:hover .repo-name { color: var(--accent-dark); }
+    .repo-desc {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.65; flex: 1;
+    }
+    .repo-lang {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @media (max-width: 900px) { .github-repos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) {
+      .github-repos { grid-template-columns: 1fr; }
+      .github-top { flex-direction: column; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════════════ */
+    .contact { background: var(--bg-alt); text-align: center; }
+    .contact .section-sub { margin-inline: auto; }
+    .contact .section-label { margin-inline: auto; }
+    .contact-box {
+      max-width: 640px; margin: 40px auto 0;
+      padding: clamp(20px, 4vw, 32px);
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      min-width: 0; text-align: left;
+    }
+    .contact-items {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .contact-item {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      min-width: 0;
+    }
+    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-item-left {
+      display: flex; align-items: center; gap: 14px;
+      min-width: 0;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-light); margin-bottom: 2px;
+    }
+    .contact-value {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      overflow-wrap: anywhere;
+    }
+    .contact-actions { display: flex; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+    .copy-btn, .contact-link {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      font-size: 13px; font-weight: 700;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 14px; border-radius: 10px;
+      min-height: 40px;
+      transition: color 200ms ease, border-color 200ms ease, background 200ms ease, transform 200ms ease;
+    }
+    .copy-btn:hover, .contact-link:hover {
+      border-color: var(--text); background: var(--bg-alt);
+    }
+    .copy-btn:hover .icon-ext, .contact-link:hover .icon-ext { transform: translate(2px, -2px); }
+    .copy-btn:active, .contact-link:active { transform: translateY(1px); }
+    .copy-btn.copied {
+      color: #0e0e10; border-color: var(--accent);
+      background: var(--accent);
+    }
+    .copy-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    @media (max-width: 560px) {
+      .contact-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .contact-actions { width: 100%; }
+      .copy-btn, .contact-link { flex: 1; min-height: 44px; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      background: var(--bg);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      min-width: 0;
+    }
+    .footer-copy {
+      font-size: 13px; color: var(--text-light);
+      overflow-wrap: break-word; min-width: 0;
+    }
+    .footer-links {
+      display: flex; gap: 4px; align-items: center;
+    }
+    .footer-link {
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 10px; min-height: 44px;
+      transition: color 200ms ease, background 200ms ease;
+    }
+    .footer-link:hover { color: var(--text); background: var(--bg-alt); }
+
+    .project-card.hidden { display: none !important; }
+
+    @media (max-width: 360px) {
+      .hero-actions .btn-primary,
+      .hero-actions .btn-outline,
+      .hero-actions .btn-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link" data-i18n="skipLink">Перейти к содержимому</a>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollBar"></div>
+  </div>
+
+  <!-- ══════════════ NAVIGATION ══════════════ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Muhammad — home">
+        <span>Muhammad<span class="nav-logo-mark">.</span></span>
+        <span class="nav-logo-alias">vvewrix</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#about"    class="nav-link" data-i18n="navAbout">Обо мне</a></li>
+        <li><a href="#projects" class="nav-link" data-i18n="navProjects">Проекты</a></li>
+        <li><a href="#skills"   class="nav-link" data-i18n="navSkills">Навыки</a></li>
+        <li><a href="#focus"    class="nav-link" data-i18n="navFocus">Направление</a></li>
+        <li><a href="#contact"  class="nav-link" data-i18n="navContact">Контакты</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="lang-switch" data-active="ru" role="group" data-i18n-aria="ariaLang" aria-label="Язык">
+          <span class="lang-indicator" aria-hidden="true"></span>
+          <button type="button" class="lang-btn active" data-lang="ru" aria-label="Русский">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
+
+        <button type="button" class="theme-toggle" id="themeToggle" data-i18n-aria="ariaTheme" aria-label="Переключить тему" role="switch" aria-checked="false">
+          <span class="theme-toggle-thumb" aria-hidden="true">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+          </span>
+        </button>
+
+        <a href="https://github.com/Magasah" class="nav-cta" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaGithub" aria-label="Профиль GitHub (откроется в новой вкладке)">
+          <img class="brand-icon" src="webap/github.webp" alt="" width="18" height="18" decoding="async">
+          <span>GitHub</span>
+        </a>
+
+        <button type="button" class="nav-burger" id="burger" data-i18n-aria="ariaMenuOpen" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="mobile-menu" data-i18n-aria="ariaMobileNav" aria-label="Мобильная навигация" hidden>
+      <a href="#about"    class="nav-link" data-i18n="navAbout">Обо мне</a>
+      <a href="#projects" class="nav-link" data-i18n="navProjects">Проекты</a>
+      <a href="#skills"   class="nav-link" data-i18n="navSkills">Навыки</a>
+      <a href="#focus"    class="nav-link" data-i18n="navFocus">Направление</a>
+      <a href="#contact"  class="nav-link" data-i18n="navContact">Контакты</a>
+
+      <div class="nav-mobile-controls">
+        <div class="lang-switch" data-active="ru" role="group" data-i18n-aria="ariaLang" aria-label="Язык">
+          <span class="lang-indicator" aria-hidden="true"></span>
+          <button type="button" class="lang-btn active" data-lang="ru" aria-label="Русский">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
+
+        <button type="button" class="theme-toggle" data-theme-toggle data-i18n-aria="ariaTheme" aria-label="Переключить тему" role="switch" aria-checked="false">
+          <span class="theme-toggle-thumb" aria-hidden="true">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+          </span>
+        </button>
+
+        <a href="https://github.com/Magasah" class="nav-cta" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaGithub" aria-label="Профиль GitHub (откроется в новой вкладке)">
+          <img class="brand-icon" src="webap/github.webp" alt="" width="18" height="18" decoding="async">
+          <span>GitHub</span>
+        </a>
+      </div>
+  </div>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <div class="container hero-inner">
+
+        <div class="hero-tag">
+          <span class="hero-status-dot" aria-hidden="true"></span>
+          <span data-i18n="heroTag">Открыт для работы</span>
+        </div>
+
+        <h1 class="hero-name">Muhammad</h1>
+        <p class="hero-alias">vvewrix</p>
+
+        <p class="hero-role" data-i18n="heroRole">Инженер-программист</p>
+        <p class="hero-tagline">
+          <span data-i18n="heroTaglinePre">создаю софт с </span><em data-i18n="heroTaglineAccent">безопасностью</em><span data-i18n="heroTaglinePost"> в приоритете.</span>
+        </p>
+
+        <p class="hero-desc" data-i18n="heroDesc">
+          Я разрабатываю программное обеспечение, изучаю кибербезопасность и экспериментирую с системами, автоматизацией и современными веб-технологиями.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">
+            <span data-i18n="ctaProjects">Смотреть проекты</span>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://github.com/Magasah" class="btn-outline" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaGithub" aria-label="Профиль GitHub (откроется в новой вкладке)">
+            <img class="brand-icon" src="webap/github.webp" alt="" width="18" height="18" decoding="async">
+            <span>GitHub</span>
+          </a>
+          <a href="https://t.me/vvewrix" class="btn-ghost" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaTelegram" aria-label="Telegram @vvewrix (откроется в новой вкладке)">
+            <img class="brand-icon" src="webap/telegram.webp" alt="" width="18" height="18" decoding="async">
+            <span>Telegram</span>
+          </a>
+        </div>
+
+        <p class="hero-location">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="heroLocation">Душанбе, Таджикистан</span>
+        </p>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </section>
+
+    <!-- ══════════════ ABOUT ══════════════ -->
+    <section class="section about" id="about" aria-label="About Muhammad">
+      <div class="container">
+        <div class="about-grid" data-reveal>
+          <div>
+            <p class="section-label" data-i18n="aboutLabel">Обо мне</p>
+            <h2 class="section-title" data-i18n="aboutTitle">Инженер-программист из Душанбе.</h2>
+          </div>
+          <div class="about-text">
+            <p data-i18n="aboutP1">Живу в <strong>Душанбе, Таджикистан</strong>. Создаю практичный софт — веб-приложения, инструменты автоматизации и утилиты командной строки. Работаю в основном с <strong>Python</strong>, <strong>JavaScript</strong>, веб-разработкой и Telegram-ботами.</p>
+            <p data-i18n="aboutP2">Углубляюсь в <strong>кибербезопасность</strong> и <strong>Linux-системы</strong> — изучаю, как ломаются приложения, как работают сети, и как писать код, который выдерживает реальные условия. Большая часть обучения происходит на практике.</p>
+            <p data-i18n="aboutP3">Активные проекты — на GitHub: от сетевых сканеров до маркетплейсов, от ботов автоматизации до экспериментов по безопасности. Если я что-то строю — это обычно попадает туда.</p>
+            <ul class="about-facts">
+              <li data-i18n="factLocation">Душанбе, Таджикистан</li>
+              <li data-i18n="factSE">Программная инженерия</li>
+              <li data-i18n="factSec">Кибербезопасность</li>
+              <li>Linux</li>
+              <li data-i18n="factAuto">Автоматизация</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ PROJECTS ══════════════ -->
+    <section class="section" id="projects" aria-label="Selected projects">
+      <div class="container">
+        <div class="projects-header" data-reveal>
+          <div>
+            <p class="section-label" data-i18n="projectsLabel">Проекты</p>
+            <h2 class="section-title" data-i18n="projectsTitle">Избранные работы</h2>
+          </div>
+          <div class="project-filters" role="group" data-i18n-aria="filterProjects" aria-label="Фильтр проектов">
+            <button type="button" class="filter-btn active" data-filter="all" data-i18n="filterAll">Все</button>
+            <button type="button" class="filter-btn" data-filter="web" data-i18n="filterWeb">Веб</button>
+            <button type="button" class="filter-btn" data-filter="security" data-i18n="filterSecurity">Безопасность</button>
+            <button type="button" class="filter-btn" data-filter="automation" data-i18n="filterAutomation">Автоматизация</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid" data-reveal>
+
+          <article class="project-card featured" data-category="web" data-tilt>
+            <div class="project-card-inner">
+              <div class="tajsel-frame">
+                <img
+                  class="tajsel-logo"
+                  src="webap/TAJSEL%20LOGO.webp"
+                  alt="TAJSEL"
+                  width="280"
+                  height="79"
+                  decoding="async"
+                  loading="lazy">
+              </div>
+              <div class="project-body">
+                <div class="project-kicker">
+                  <span class="project-index">01</span>
+                  <span class="project-category" data-i18n="catWeb">Веб</span>
+                  <span class="project-private" data-i18n="privateRepo">Приватный репозиторий</span>
+                </div>
+                <h3 class="project-name">TAJSEL</h3>
+                <p class="project-subtitle" data-i18n="tajselKicker">Цифровой маркетплейс</p>
+                <p class="project-desc" data-i18n="tajselDesc">Цифровой маркетплейс для Таджикистана — соединяет покупателей и продавцов по категориям товаров. Панель продавца, каталог, безопасная оплата. В активной разработке.</p>
+                <div class="project-stack">
+                  <span class="tech-tag">Next.js 14</span>
+                  <span class="tech-tag">FastAPI</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">Tailwind</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://tajsel.tj" class="project-btn live" target="_blank" rel="noopener noreferrer" aria-label="tajsel.tj (откроется в новой вкладке)">
+                    <span>tajsel.tj</span>
+                    <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="web" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-kicker">
+                <span class="project-index">02</span>
+                <span class="project-category" data-i18n="catWeb">Веб</span>
+              </div>
+              <h3 class="project-name">ZooBozor</h3>
+              <p class="project-subtitle">golub_bozor</p>
+              <p class="project-desc" data-i18n="zooDesc">Маркетплейс для покупки и продажи животных в Таджикистане. 18 категорий, VIP-объявления, личные кабинеты, верификация продавцов, PWA-поддержка.</p>
+              <div class="project-stack">
+                <span class="tech-tag">Django 5</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">HTMX</span>
+                <span class="tech-tag">Tailwind</span>
+                <span class="tech-tag">PWA</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Magasah/golub_bozor" class="project-btn" target="_blank" rel="noopener noreferrer" aria-label="ZooBozor on GitHub">
+                  <img class="brand-icon brand-icon--sm" src="webap/github.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+                  <span>GitHub</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="security" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-kicker">
+                <span class="project-index">03</span>
+                <span class="project-category" data-i18n="catSecurity">Безопасность</span>
+              </div>
+              <h3 class="project-name">Ghost Network Scanner</h3>
+              <p class="project-subtitle">ghost-network-scanner</p>
+              <p class="project-desc" data-i18n="ghostDesc">Легковесный TCP-сканер портов — без зависимостей, только стандартная библиотека Python. Резолвит хосты, проверяет популярные порты (SSH, HTTP, MySQL, RDP) и сообщает об открытых сервисах.</p>
+              <div class="project-stack">
+                <span class="tech-tag">Python 3</span>
+                <span class="tech-tag">socket</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Magasah/Ghost-Network-Scanner" class="project-btn" target="_blank" rel="noopener noreferrer" aria-label="Ghost-Network-Scanner on GitHub">
+                  <img class="brand-icon brand-icon--sm" src="webap/github.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+                  <span>GitHub</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="security" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-kicker">
+                <span class="project-index">04</span>
+                <span class="project-category" data-i18n="catSecurity">Безопасность</span>
+              </div>
+              <h3 class="project-name">Terminal Safe System</h3>
+              <p class="project-subtitle">terminal-safe-system</p>
+              <p class="project-desc" data-i18n="terminalDesc">Аутентификация по PIN-коду с защитой от брутфорса. Ограничивает попытки, затем блокирует терминал — демонстрация механик локаута и защитного программирования.</p>
+              <div class="project-stack">
+                <span class="tech-tag">Python 3</span>
+                <span class="tech-tag">time</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Magasah/Terminal-Safe-System" class="project-btn" target="_blank" rel="noopener noreferrer" aria-label="Terminal-Safe-System on GitHub">
+                  <img class="brand-icon brand-icon--sm" src="webap/github.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+                  <span>GitHub</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="automation" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-kicker">
+                <span class="project-index">05</span>
+                <span class="project-category" data-i18n="catAuto">Автоматизация</span>
+              </div>
+              <h3 class="project-name">merix_CodeX Bot</h3>
+              <p class="project-subtitle">merix_CodeX</p>
+              <p class="project-desc" data-i18n="merixDesc">Telegram-бот для IT-агентства Merix CodeX. Просмотр услуг, оформление заказа через FSM, автоматические уведомления администратору.</p>
+              <div class="project-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">aiogram 3</span>
+                <span class="tech-tag">FSM</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Magasah/merix_CodeX" class="project-btn" target="_blank" rel="noopener noreferrer" aria-label="merix_CodeX on GitHub">
+                  <img class="brand-icon brand-icon--sm" src="webap/github.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+                  <span>GitHub</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="security" data-tilt>
+            <div class="project-card-inner">
+              <div class="project-kicker">
+                <span class="project-index">06</span>
+                <span class="project-category" data-i18n="catSecurity">Безопасность</span>
+              </div>
+              <h3 class="project-name">Cybersecurity Learning Path</h3>
+              <p class="project-subtitle">cybersecurity-learning-path</p>
+              <p class="project-desc" data-i18n="learnDesc">Открытый лог моего пути в кибербезопасность — Linux, Python для security-скриптов, OWASP Top 10 и подборка инструментов.</p>
+              <div class="project-stack">
+                <span class="tech-tag">Markdown</span>
+                <span class="tech-tag">Shell</span>
+                <span class="tech-tag">Python</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Magasah/cybersecurity-learning-path" class="project-btn" target="_blank" rel="noopener noreferrer" aria-label="cybersecurity-learning-path on GitHub">
+                  <img class="brand-icon brand-icon--sm" src="webap/github.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+                  <span>GitHub</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SKILLS ══════════════ -->
+    <section class="section skills" id="skills" aria-label="Skills">
+      <div class="container">
+        <p class="section-label" data-i18n="skillsLabel">Навыки</p>
+        <h2 class="section-title" data-i18n="skillsTitle">С чем я работаю</h2>
+        <p class="section-sub" data-i18n="skillsSub">Технологии, которые я использую регулярно — на основе реальных проектов.</p>
+
+        <div class="skills-grid" data-reveal>
+          <div class="skill-group">
+            <div class="skill-group-title" data-i18n="skillLanguages">Языки</div>
+            <ul class="skill-list" role="list">
+              <li class="skill-item"><span class="skill-dot"></span>Python</li>
+              <li class="skill-item"><span class="skill-dot"></span>JavaScript</li>
+              <li class="skill-item"><span class="skill-dot"></span>HTML &amp; CSS</li>
+              <li class="skill-item"><span class="skill-dot"></span>C++</li>
+              <li class="skill-item"><span class="skill-dot"></span>Bash</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title" data-i18n="skillDev">Разработка</div>
+            <ul class="skill-list" role="list">
+              <li class="skill-item"><span class="skill-dot"></span>Django</li>
+              <li class="skill-item"><span class="skill-dot"></span>FastAPI</li>
+              <li class="skill-item"><span class="skill-dot"></span>Next.js</li>
+              <li class="skill-item"><span class="skill-dot"></span><span data-i18n="tgBots">Telegram-боты</span> (aiogram)</li>
+              <li class="skill-item"><span class="skill-dot"></span>REST APIs</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title" data-i18n="skillSecurity">Безопасность</div>
+            <ul class="skill-list" role="list">
+              <li class="skill-item"><span class="skill-dot"></span><span data-i18n="netScan">Сетевое сканирование</span></li>
+              <li class="skill-item"><span class="skill-dot"></span><span data-i18n="webSec">Веб-безопасность (OWASP)</span></li>
+              <li class="skill-item"><span class="skill-dot"></span>Nmap / Burp Suite</li>
+              <li class="skill-item"><span class="skill-dot"></span><span data-i18n="bruteDef">Защита от брутфорса</span></li>
+              <li class="skill-item"><span class="skill-dot"></span><span data-i18n="secScript">Security-скрипты</span></li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title" data-i18n="skillSystems">Системы и инструменты</div>
+            <ul class="skill-list" role="list">
+              <li class="skill-item"><span class="skill-dot"></span>Linux</li>
+              <li class="skill-item"><span class="skill-dot"></span>Git</li>
+              <li class="skill-item"><span class="skill-dot"></span>PostgreSQL</li>
+              <li class="skill-item"><span class="skill-dot"></span>MySQL / SQLite</li>
+              <li class="skill-item"><span class="skill-dot"></span>Tailwind CSS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FOCUS ══════════════ -->
+    <section class="section focus" id="focus" aria-label="Focus areas">
+      <div class="container">
+        <p class="section-label" data-i18n="focusLabel">Направление</p>
+        <h2 class="section-title" data-i18n="focusTitle">Куда я двигаюсь</h2>
+        <p class="section-sub" data-i18n="focusSub">Области, которые я активно изучаю — не сертификаты, а искренний интерес.</p>
+
+        <div class="focus-grid" data-reveal>
+          <div class="focus-card">
+            <div class="focus-index">01</div>
+            <div class="focus-name" data-i18n="focus1Name">Безопасность приложений</div>
+            <p class="focus-desc" data-i18n="focus1Desc">Понимание, как ломаются веб-приложения — injection, обход авторизации, небезопасные API — и как встраивать защиту с самого начала.</p>
+            <span class="focus-badge" data-i18n="badgeStudying">Изучаю</span>
+          </div>
+          <div class="focus-card">
+            <div class="focus-index">02</div>
+            <div class="focus-name" data-i18n="focus2Name">Linux и системы</div>
+            <p class="focus-desc" data-i18n="focus2Desc">Linux — среда, в которой я провожу большую часть времени. Права, процессы, сеть, внутренности системы на практическом уровне.</p>
+            <span class="focus-badge" data-i18n="badgeActive">Активно</span>
+          </div>
+          <div class="focus-card">
+            <div class="focus-index">03</div>
+            <div class="focus-name" data-i18n="focus3Name">Безопасная разработка</div>
+            <p class="focus-desc" data-i18n="focus3Desc">Пишу код, который выдерживает — валидация ввода, паттерны аутентификации, работа с секретами через переменные окружения, безопасная обработка ошибок.</p>
+            <span class="focus-badge" data-i18n="badgePracticing">Практикую</span>
+          </div>
+          <div class="focus-card">
+            <div class="focus-index">04</div>
+            <div class="focus-name" data-i18n="focus4Name">Сети и протоколы</div>
+            <p class="focus-desc" data-i18n="focus4Desc">TCP/IP, сканирование портов, DNS, HTTP — понимание того, что происходит на уровне протокола, а не только приложения.</p>
+            <span class="focus-badge" data-i18n="badgeStudying">Изучаю</span>
+          </div>
+          <div class="focus-card">
+            <div class="focus-index">05</div>
+            <div class="focus-name" data-i18n="focus5Name">Автоматизация безопасности</div>
+            <p class="focus-desc" data-i18n="focus5Desc">Использую Python для автоматизации security-задач — сканеры, краулеры, инструменты разведки и утилиты, ускоряющие рутинную работу.</p>
+            <span class="focus-badge" data-i18n="badgeBuilding">Строю</span>
+          </div>
+          <div class="focus-card">
+            <div class="focus-index">06</div>
+            <div class="focus-name" data-i18n="focus6Name">CTF и этический хакинг</div>
+            <p class="focus-desc" data-i18n="focus6Desc">Прохожу CTF-задания и платформы вроде TryHackMe и Hack The Box, чтобы применять и проверять то, что изучаю.</p>
+            <span class="focus-badge" data-i18n="badgeLearning">Учусь</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ GITHUB ══════════════ -->
+    <section class="section" id="github" aria-label="GitHub">
+      <div class="container">
+        <div class="github-top" data-reveal>
+          <div>
+            <p class="section-label" data-i18n="githubLabel">Открытый код</p>
+            <h2 class="section-title" data-i18n="githubTitle">На GitHub</h2>
+          </div>
+          <a href="https://github.com/Magasah" class="github-profile-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaGithub" aria-label="Профиль GitHub (откроется в новой вкладке)">
+            <img class="brand-icon brand-icon--md" src="webap/github.webp" alt="GitHub" width="32" height="32" decoding="async" loading="lazy">
+            <span>github.com/Magasah</span>
+            <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+        </div>
+
+        <div class="github-repos" data-reveal>
+          <div class="repo-card">
+            <a href="https://github.com/Magasah/Ghost-Network-Scanner" target="_blank" rel="noopener noreferrer">
+              <div class="repo-name">Ghost-Network-Scanner</div>
+              <p class="repo-desc" data-i18n="repoGhost">Легковесный TCP-сканер портов на чистом Python без зависимостей.</p>
+            </a>
+            <div class="repo-lang"><span class="lang-dot"></span>Python</div>
+          </div>
+          <div class="repo-card">
+            <a href="https://github.com/Magasah/Terminal-Safe-System" target="_blank" rel="noopener noreferrer">
+              <div class="repo-name">Terminal-Safe-System</div>
+              <p class="repo-desc" data-i18n="repoTerminal">Система аутентификации по PIN с защитой от брутфорса на Python.</p>
+            </a>
+            <div class="repo-lang"><span class="lang-dot"></span>Python</div>
+          </div>
+          <div class="repo-card">
+            <a href="https://github.com/Magasah/golub_bozor" target="_blank" rel="noopener noreferrer">
+              <div class="repo-name">golub_bozor</div>
+              <p class="repo-desc" data-i18n="repoZoo">Маркетплейс животных для Таджикистана. Django, HTMX, Tailwind, PWA.</p>
+            </a>
+            <div class="repo-lang"><span class="lang-dot"></span>HTML / Django</div>
+          </div>
+          <div class="repo-card">
+            <a href="https://github.com/Magasah/merix_CodeX" target="_blank" rel="noopener noreferrer">
+              <div class="repo-name">merix_CodeX</div>
+              <p class="repo-desc" data-i18n="repoMerix">Telegram-бот для IT-агентства — каталог услуг, FSM-заказы, админ-уведомления.</p>
+            </a>
+            <div class="repo-lang"><span class="lang-dot"></span>Python</div>
+          </div>
+          <div class="repo-card">
+            <a href="https://github.com/Magasah/cybersecurity-learning-path" target="_blank" rel="noopener noreferrer">
+              <div class="repo-name">cybersecurity-learning-path</div>
+              <p class="repo-desc" data-i18n="repoLearn">Мой путь к этичному хакингу из Душанбе. Заметки, инструменты, проекты.</p>
+            </a>
+            <div class="repo-lang"><span class="lang-dot"></span>Markdown</div>
+          </div>
+          <div class="repo-card">
+            <a href="https://github.com/Magasah/McodeBOT" target="_blank" rel="noopener noreferrer">
+              <div class="repo-name">McodeBOT</div>
+              <p class="repo-desc" data-i18n="repoMcode">Telegram-бот с inline-меню для MCode Academy — доставка учебного контента.</p>
+            </a>
+            <div class="repo-lang"><span class="lang-dot"></span>Python</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACT ══════════════ -->
+    <section class="section contact" id="contact" aria-label="Contact">
+      <div class="container">
+        <p class="section-label" data-i18n="contactLabel">Контакты</p>
+        <h2 class="section-title" data-i18n="contactTitle">Связаться со мной</h2>
+        <p class="section-sub" data-i18n="contactSub">Пишите в Telegram или смотрите мои проекты на GitHub.</p>
+
+        <div class="contact-box" data-reveal>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-left">
+                <div class="contact-icon">
+                  <img class="brand-icon" src="webap/telegram.webp" alt="" width="20" height="20" decoding="async" loading="lazy">
+                </div>
+                <div>
+                  <div class="contact-label">Telegram</div>
+                  <div class="contact-value">@vvewrix</div>
+                </div>
+              </div>
+              <div class="contact-actions">
+                <button type="button" class="copy-btn" id="copyTelegram" data-i18n-aria="ariaCopyTg" aria-label="Скопировать имя пользователя Telegram">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span data-i18n="copyBtn">Копировать</span>
+                </button>
+                <a href="https://t.me/vvewrix" class="contact-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaTelegram" aria-label="Telegram @vvewrix (откроется в новой вкладке)">
+                  <span data-i18n="openBtn">Открыть</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-left">
+                <div class="contact-icon">
+                  <img class="brand-icon" src="webap/github.webp" alt="" width="20" height="20" decoding="async" loading="lazy">
+                </div>
+                <div>
+                  <div class="contact-label">GitHub</div>
+                  <div class="contact-value">github.com/Magasah</div>
+                </div>
+              </div>
+              <div class="contact-actions">
+                <a href="https://github.com/Magasah" class="contact-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaGithub" aria-label="Профиль GitHub (откроется в новой вкладке)">
+                  <span data-i18n="viewBtn">Смотреть</span>
+                  <svg class="icon-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">
+        © <span id="year">2026</span> Muhammad. <span data-i18n="footerLoc">Из Душанбе, Таджикистан.</span>
+      </p>
+      <div class="footer-links">
+        <a href="https://github.com/Magasah" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaGithub" aria-label="Профиль GitHub (откроется в новой вкладке)">
+          <img class="brand-icon brand-icon--sm" src="webap/github.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+          GitHub
+        </a>
+        <a href="https://t.me/vvewrix" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="ariaTelegram" aria-label="Telegram @vvewrix (откроется в новой вкладке)">
+          <img class="brand-icon brand-icon--sm" src="webap/telegram.webp" alt="" width="16" height="16" decoding="async" loading="lazy">
+          Telegram
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const T = {
+      ru: {
+        skipLink: 'Перейти к содержимому',
+        navAbout: 'Обо мне',
+        navProjects: 'Проекты',
+        navSkills: 'Навыки',
+        navFocus: 'Направление',
+        navContact: 'Контакты',
+        heroTag: 'Открыт для работы',
+        heroRole: 'Инженер-программист',
+        heroTaglinePre: 'создаю софт с ',
+        heroTaglineAccent: 'безопасностью',
+        heroTaglinePost: ' в приоритете.',
+        heroDesc: 'Я разрабатываю программное обеспечение, изучаю кибербезопасность и экспериментирую с системами, автоматизацией и современными веб-технологиями.',
+        ctaProjects: 'Смотреть проекты',
+        heroLocation: 'Душанбе, Таджикистан',
+        aboutLabel: 'Обо мне',
+        aboutTitle: 'Инженер-программист из Душанбе.',
+        aboutP1: 'Живу в <strong>Душанбе, Таджикистан</strong>. Создаю практичный софт — веб-приложения, инструменты автоматизации и утилиты командной строки. Работаю в основном с <strong>Python</strong>, <strong>JavaScript</strong>, веб-разработкой и Telegram-ботами.',
+        aboutP2: 'Углубляюсь в <strong>кибербезопасность</strong> и <strong>Linux-системы</strong> — изучаю, как ломаются приложения, как работают сети, и как писать код, который выдерживает реальные условия. Большая часть обучения происходит на практике.',
+        aboutP3: 'Активные проекты — на GitHub: от сетевых сканеров до маркетплейсов, от ботов автоматизации до экспериментов по безопасности. Если я что-то строю — это обычно попадает туда.',
+        factLocation: 'Душанбе, Таджикистан',
+        factSE: 'Программная инженерия',
+        factSec: 'Кибербезопасность',
+        factAuto: 'Автоматизация',
+        projectsLabel: 'Проекты',
+        projectsTitle: 'Избранные работы',
+        filterAll: 'Все',
+        filterWeb: 'Веб',
+        filterSecurity: 'Безопасность',
+        filterAutomation: 'Автоматизация',
+        filterProjects: 'Фильтр проектов',
+        privateRepo: 'Приватный репозиторий',
+        catWeb: 'Веб',
+        catSecurity: 'Безопасность',
+        catAuto: 'Автоматизация',
+        tajselKicker: 'Цифровой маркетплейс',
+        tajselDesc: 'Цифровой маркетплейс для Таджикистана — соединяет покупателей и продавцов по категориям товаров. Панель продавца, каталог, безопасная оплата. В активной разработке.',
+        zooDesc: 'Маркетплейс для покупки и продажи животных в Таджикистане. 18 категорий, VIP-объявления, личные кабинеты, верификация продавцов, PWA-поддержка.',
+        ghostDesc: 'Легковесный TCP-сканер портов — без зависимостей, только стандартная библиотека Python. Резолвит хосты, проверяет популярные порты (SSH, HTTP, MySQL, RDP) и сообщает об открытых сервисах.',
+        terminalDesc: 'Аутентификация по PIN-коду с защитой от брутфорса. Ограничивает попытки, затем блокирует терминал — демонстрация механик локаута и защитного программирования.',
+        merixDesc: 'Telegram-бот для IT-агентства Merix CodeX. Просмотр услуг, оформление заказа через FSM, автоматические уведомления администратору.',
+        learnDesc: 'Открытый лог моего пути в кибербезопасность — Linux, Python для security-скриптов, OWASP Top 10 и подборка инструментов.',
+        skillsLabel: 'Навыки',
+        skillsTitle: 'С чем я работаю',
+        skillsSub: 'Технологии, которые я использую регулярно — на основе реальных проектов.',
+        skillLanguages: 'Языки',
+        skillDev: 'Разработка',
+        skillSecurity: 'Безопасность',
+        skillSystems: 'Системы и инструменты',
+        tgBots: 'Telegram-боты',
+        netScan: 'Сетевое сканирование',
+        webSec: 'Веб-безопасность (OWASP)',
+        bruteDef: 'Защита от брутфорса',
+        secScript: 'Security-скрипты',
+        focusLabel: 'Направление',
+        focusTitle: 'Куда я двигаюсь',
+        focusSub: 'Области, которые я активно изучаю — не сертификаты, а искренний интерес.',
+        focus1Name: 'Безопасность приложений',
+        focus1Desc: 'Понимание, как ломаются веб-приложения — injection, обход авторизации, небезопасные API — и как встраивать защиту с самого начала.',
+        focus2Name: 'Linux и системы',
+        focus2Desc: 'Linux — среда, в которой я провожу большую часть времени. Права, процессы, сеть, внутренности системы на практическом уровне.',
+        focus3Name: 'Безопасная разработка',
+        focus3Desc: 'Пишу код, который выдерживает — валидация ввода, паттерны аутентификации, работа с секретами через переменные окружения, безопасная обработка ошибок.',
+        focus4Name: 'Сети и протоколы',
+        focus4Desc: 'TCP/IP, сканирование портов, DNS, HTTP — понимание того, что происходит на уровне протокола, а не только приложения.',
+        focus5Name: 'Автоматизация безопасности',
+        focus5Desc: 'Использую Python для автоматизации security-задач — сканеры, краулеры, инструменты разведки и утилиты, ускоряющие рутинную работу.',
+        focus6Name: 'CTF и этический хакинг',
+        focus6Desc: 'Прохожу CTF-задания и платформы вроде TryHackMe и Hack The Box, чтобы применять и проверять то, что изучаю.',
+        badgeStudying: 'Изучаю',
+        badgeActive: 'Активно',
+        badgePracticing: 'Практикую',
+        badgeBuilding: 'Строю',
+        badgeLearning: 'Учусь',
+        githubLabel: 'Открытый код',
+        githubTitle: 'На GitHub',
+        repoGhost: 'Легковесный TCP-сканер портов на чистом Python без зависимостей.',
+        repoTerminal: 'Система аутентификации по PIN с защитой от брутфорса на Python.',
+        repoZoo: 'Маркетплейс животных для Таджикистана. Django, HTMX, Tailwind, PWA.',
+        repoMerix: 'Telegram-бот для IT-агентства — каталог услуг, FSM-заказы, админ-уведомления.',
+        repoLearn: 'Мой путь к этичному хакингу из Душанбе. Заметки, инструменты, проекты.',
+        repoMcode: 'Telegram-бот с inline-меню для MCode Academy — доставка учебного контента.',
+        contactLabel: 'Контакты',
+        contactTitle: 'Связаться со мной',
+        contactSub: 'Пишите в Telegram или смотрите мои проекты на GitHub.',
+        copyBtn: 'Копировать',
+        copied: 'Скопировано',
+        openBtn: 'Открыть',
+        viewBtn: 'Смотреть',
+        footerLoc: 'Из Душанбе, Таджикистан.',
+        ariaLang: 'Язык',
+        ariaTheme: 'Переключить тему',
+        ariaMenuOpen: 'Открыть меню',
+        ariaMenuClose: 'Закрыть меню',
+        ariaMobileNav: 'Мобильная навигация',
+        ariaGithub: 'Профиль GitHub (откроется в новой вкладке)',
+        ariaTelegram: 'Telegram @vvewrix (откроется в новой вкладке)',
+        ariaCopyTg: 'Скопировать имя пользователя Telegram'
+      },
+      en: {
+        skipLink: 'Skip to content',
+        navAbout: 'About',
+        navProjects: 'Projects',
+        navSkills: 'Skills',
+        navFocus: 'Focus',
+        navContact: 'Contact',
+        heroTag: 'Available for work',
+        heroRole: 'Software Engineer',
+        heroTaglinePre: 'building software with ',
+        heroTaglineAccent: 'security',
+        heroTaglinePost: ' in mind.',
+        heroDesc: 'I build software, explore cybersecurity, and experiment with systems, automation and modern web technologies.',
+        ctaProjects: 'View Projects',
+        heroLocation: 'Dushanbe, Tajikistan',
+        aboutLabel: 'About',
+        aboutTitle: 'Software engineer from Dushanbe.',
+        aboutP1: 'Based in <strong>Dushanbe, Tajikistan</strong>, I focus on building practical software — web applications, automation tools, and command-line utilities. My work spans <strong>Python</strong>, <strong>JavaScript</strong>, web development, and Telegram bot integrations.',
+        aboutP2: 'I\'m developing deeper knowledge in <strong>cybersecurity</strong> and <strong>Linux systems</strong> — studying how applications break, how networks operate, and how to write software that holds up under real-world conditions. Most of this learning happens hands-on.',
+        aboutP3: 'You\'ll find my active projects on GitHub — from network scanners to marketplaces, automation bots to security experiments. If I\'m building something, it usually ends up there.',
+        factLocation: 'Dushanbe, Tajikistan',
+        factSE: 'Software Engineering',
+        factSec: 'Cybersecurity',
+        factAuto: 'Automation',
+        projectsLabel: 'Projects',
+        projectsTitle: 'Selected work',
+        filterAll: 'All',
+        filterWeb: 'Web',
+        filterSecurity: 'Security',
+        filterAutomation: 'Automation',
+        filterProjects: 'Filter projects',
+        privateRepo: 'Private repo',
+        catWeb: 'Web',
+        catSecurity: 'Security',
+        catAuto: 'Automation',
+        tajselKicker: 'Digital marketplace',
+        tajselDesc: 'A digital marketplace for Tajikistan — connecting buyers and sellers across product categories. Seller dashboards, product listings, and a secure checkout flow. Currently in active development.',
+        zooDesc: 'Marketplace for buying and selling animals in Tajikistan. 18 categories, VIP listings, user dashboards, seller verification badges, and PWA support.',
+        ghostDesc: 'Lightweight TCP port scanner — no external dependencies, just Python\'s standard library. Resolves hostnames, checks common ports (SSH, HTTP, MySQL, RDP), and reports open services.',
+        terminalDesc: 'PIN-code authentication with brute-force protection. Limits attempts, then locks the terminal — a demonstration of lockout mechanics and defensive programming.',
+        merixDesc: 'Telegram bot for the Merix CodeX IT agency. Handles service browsing, order placement via a finite state machine, and automatic admin notifications.',
+        learnDesc: 'A public log of my journey into cybersecurity — Linux command line, Python for security scripting, OWASP Top 10, and a curated reference of tools.',
+        skillsLabel: 'Skills',
+        skillsTitle: 'What I work with',
+        skillsSub: 'Technologies I use regularly, based on my actual projects and work.',
+        skillLanguages: 'Languages',
+        skillDev: 'Development',
+        skillSecurity: 'Security',
+        skillSystems: 'Systems & Tools',
+        tgBots: 'Telegram Bots',
+        netScan: 'Network Scanning',
+        webSec: 'Web Security (OWASP)',
+        bruteDef: 'Brute-force Defenses',
+        secScript: 'Security Scripting',
+        focusLabel: 'Direction',
+        focusTitle: "Where I'm headed",
+        focusSub: "Areas I'm actively studying and building toward — not certifications, just genuine interest.",
+        focus1Name: 'Application Security',
+        focus1Desc: 'Understanding how web applications break — injection, auth bypass, insecure APIs — and how to build defenses in from the start.',
+        focus2Name: 'Linux & Systems',
+        focus2Desc: 'Linux is where I spend most of my time. Understanding permissions, processes, networking, and system internals at a practical level.',
+        focus3Name: 'Secure Software Development',
+        focus3Desc: 'Writing code that holds up — input validation, authentication patterns, environment secrets, safe error handling.',
+        focus4Name: 'Networking & Protocols',
+        focus4Desc: 'TCP/IP, port scanning, DNS, HTTP — understanding what happens at the protocol level, not just the application layer.',
+        focus5Name: 'Security Automation',
+        focus5Desc: 'Using Python to automate security tasks — scanners, crawlers, recon tools, and utilities that make repetitive security work faster.',
+        focus6Name: 'CTF & Ethical Hacking',
+        focus6Desc: 'Working through Capture The Flag challenges and platforms like TryHackMe and Hack The Box to apply and test what I\'m learning.',
+        badgeStudying: 'Studying',
+        badgeActive: 'Active',
+        badgePracticing: 'Practicing',
+        badgeBuilding: 'Building',
+        badgeLearning: 'Learning',
+        githubLabel: 'Open source',
+        githubTitle: 'On GitHub',
+        repoGhost: 'Lightweight, dependency-free TCP port scanner written in pure Python.',
+        repoTerminal: 'PIN-code authentication system with brute-force protection in Python.',
+        repoZoo: 'Animal marketplace for Tajikistan. Django, HTMX, Tailwind, PWA.',
+        repoMerix: 'Telegram bot for an IT agency — service catalog, FSM order flow, admin alerts.',
+        repoLearn: 'My journey to become an ethical hacker from Dushanbe. Notes, tools, projects.',
+        repoMcode: 'Telegram bot with inline menus for MCode Academy — educational content delivery.',
+        contactLabel: 'Contact',
+        contactTitle: 'Get in touch',
+        contactSub: 'Feel free to reach out on Telegram or check out my work on GitHub.',
+        copyBtn: 'Copy',
+        copied: 'Copied',
+        openBtn: 'Open',
+        viewBtn: 'View',
+        footerLoc: 'Based in Dushanbe, Tajikistan.',
+        ariaLang: 'Language',
+        ariaTheme: 'Toggle theme',
+        ariaMenuOpen: 'Open menu',
+        ariaMenuClose: 'Close menu',
+        ariaMobileNav: 'Mobile navigation',
+        ariaGithub: 'GitHub profile (opens in new tab)',
+        ariaTelegram: 'Telegram @vvewrix (opens in new tab)',
+        ariaCopyTg: 'Copy Telegram username'
+      }
+    };
+
+    function currentDict() {
+      return T[document.documentElement.getAttribute('lang')] || T.ru;
+    }
+
+    function applyLang(lang) {
+      const dict = T[lang] || T.ru;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          if (/<[a-z][\s\S]*>/i.test(dict[key])) {
+            el.innerHTML = dict[key];
+          } else {
+            el.textContent = dict[key];
+          }
+        }
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.dataset.i18nAria;
+        if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+      });
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('.lang-switch').forEach(sw => {
+        sw.setAttribute('data-active', lang);
+        sw.querySelectorAll('.lang-btn').forEach(b => {
+          const on = b.dataset.lang === lang;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', String(on));
+        });
+      });
+      const burger = document.getElementById('burger');
+      if (burger) {
+        const open = burger.getAttribute('aria-expanded') === 'true';
+        burger.setAttribute('aria-label', open ? dict.ariaMenuClose : dict.ariaMenuOpen);
+        burger.setAttribute('data-i18n-aria', open ? 'ariaMenuClose' : 'ariaMenuOpen');
+      }
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    const initialLang = (function() {
+      try { return localStorage.getItem('lang') || 'ru'; } catch (e) { return 'ru'; }
+    })();
+    applyLang(initialLang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    const CHROME = { light: '#ffffff', dark: '#0e0e10' };
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.querySelectorAll('.theme-toggle, [data-theme-toggle]').forEach(t => {
+        t.setAttribute('aria-checked', String(theme === 'dark'));
+        t.setAttribute('aria-pressed', String(theme === 'dark'));
+      });
+      let meta = document.querySelector('meta[name="theme-color"]:not([media])');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'theme-color');
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', CHROME[theme] || CHROME.light);
+      try { localStorage.setItem('theme', theme); } catch (e) {}
+    }
+    function toggleTheme() {
+      const cur = document.documentElement.getAttribute('data-theme');
+      applyTheme(cur === 'dark' ? 'light' : 'dark');
+    }
+    applyTheme(document.documentElement.getAttribute('data-theme'));
+    document.querySelectorAll('.theme-toggle, [data-theme-toggle]').forEach(t => {
+      t.addEventListener('click', toggleTheme);
+    });
+
+    const yEl = document.getElementById('year');
+    if (yEl) yEl.textContent = new Date().getFullYear();
+
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function setMenu(open) {
+      burger.classList.toggle('open', open);
+      mobileMenu.classList.toggle('open', open);
+      mobileMenu.hidden = !open;
+      burger.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+      const dict = currentDict();
+      burger.setAttribute('aria-label', open ? dict.ariaMenuClose : dict.ariaMenuOpen);
+      burger.setAttribute('data-i18n-aria', open ? 'ariaMenuClose' : 'ariaMenuOpen');
+    }
+
+    burger.addEventListener('click', () => {
+      setMenu(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => setMenu(false));
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+    window.matchMedia('(min-width: 901px)').addEventListener('change', e => {
+      if (e.matches) setMenu(false);
+    });
+
+    const nav = document.querySelector('.nav');
+    const scrollBar = document.getElementById('scrollBar');
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+    let ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        nav.classList.toggle('scrolled', y > 10);
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = h > 0 ? y / h : 0;
+        scrollBar.style.transform = 'scaleX(' + pct + ')';
+
+        let current = '';
+        sections.forEach(sec => {
+          if (y >= sec.offsetTop - 100) current = sec.id;
+        });
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in'));
+    }
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterBtns.forEach(b => {
+          const on = b === btn;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', String(on));
+        });
+        projectCards.forEach(card => {
+          card.classList.toggle('hidden', !(filter === 'all' || card.dataset.category === filter));
+        });
+      });
+    });
+
+    const copyBtn = document.getElementById('copyTelegram');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('@vvewrix');
+      } catch {
+        const el = document.createElement('textarea');
+        el.value = '@vvewrix'; el.style.position = 'fixed'; el.style.opacity = '0';
+        document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+      }
+      copyBtn.classList.add('copied');
+      const label = copyBtn.querySelector('span');
+      label.textContent = currentDict().copied;
+      setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        label.textContent = currentDict().copyBtn;
+      }, 2000);
+    });
+
+    const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+                 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (canTilt) {
+      const tiltEls = document.querySelectorAll('[data-tilt]');
+      const MAX = 3;
+
+      tiltEls.forEach(el => {
+        let rafId = null;
+        let rect = null;
+        let targetX = 0, targetY = 0;
+        let currentX = 0, currentY = 0;
+
+        function update() {
+          currentX += (targetX - currentX) * 0.18;
+          currentY += (targetY - currentY) * 0.18;
+          el.style.transform =
+            'perspective(900px) rotateX(' + currentY.toFixed(2) + 'deg) rotateY(' +
+            currentX.toFixed(2) + 'deg) translateY(-3px) translateZ(4px)';
+          if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
+            rafId = requestAnimationFrame(update);
+          } else {
+            if (targetX === 0 && targetY === 0) {
+              el.style.transform = '';
+              el.style.willChange = '';
+            }
+            rafId = null;
+          }
+        }
+
+        el.addEventListener('pointerenter', () => {
+          rect = el.getBoundingClientRect();
+          el.style.willChange = 'transform';
+        });
+
+        el.addEventListener('pointermove', e => {
+          if (!rect) rect = el.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width;
+          const py = (e.clientY - rect.top) / rect.height;
+          targetX = (px - 0.5) * MAX * 2;
+          targetY = -(py - 0.5) * MAX * 2;
+          if (!rafId) rafId = requestAnimationFrame(update);
+        });
+
+        el.addEventListener('pointerleave', () => {
+          rect = null;
+          targetX = 0; targetY = 0;
+          if (!rafId) rafId = requestAnimationFrame(update);
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
